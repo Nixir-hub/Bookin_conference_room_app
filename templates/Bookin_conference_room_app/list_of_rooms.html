@@ -6,13 +6,25 @@
 </head>
 <body>
 <table>
-    <th1><td> Name</td><td> Sets</td><td> Projector</td><td>Enable</td></th1>
+    <th1><td> Name</td><td> Sets</td><td>Enable</td><td></td><td> Projector</td></th1>
 <tbody>
     {% if rooms %}
     {% for i in rooms %}
       <tr>
-          <td> <a href="{{i.id}}">{{i.name }}</a></td><td>{{i.sets}}</td><td>{{i.projector}}</td>
-          <td>True</td><td><a href="/room/modify/{{ i.id }}">edit </a></td>
+          <td> <a href="{{i.id}}">{{i.name }}</a></td><td>{{i.sets}}</td>
+          {% if room.reserved %}
+        <td class="col-2" style="color:red;">Busy</td>
+      {% else %}
+        <td class="col-2" style="color:green;">Free</td>
+      {% endif %}
+      {% if room.projector_availability %}
+        <td class="col-2" style="color:green;">&#9745;</td>
+      {% else %}
+        <td class="col-2" style="color:red;">&#9746;</td>
+      {% endif %}
+
+          <td>{{i.projector}}</td>
+          <td><a href="/room/modify/{{ i.id }}">edit </a></td>
           <td><a href="/room/delete/{{ i.id }}">delete </a></td><td><a href="/room/reserve/{{ i.id }}">reservation </a></td>
             <td><a href="/room_details/{{ i.id }}">Details </a></td>
       </tr>

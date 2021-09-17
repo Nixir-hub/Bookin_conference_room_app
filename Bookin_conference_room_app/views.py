@@ -38,11 +38,13 @@ def show_room_list(request):
     """
     if request.method == "GET":
         rooms = Room.objects.all()
-        return render(request, "Bookin_conference_room_app/list_of_rooms.html",
-                      {
-                          "rooms": rooms
-                      }
-                      )
+        for room in rooms:
+            rese_dates = [rese.date for rese in room.reservation_set.all()]
+            room.reserved = datetime.date.today() in rese_dates
+            return render(request, "Bookin_conference_room_app/list_of_rooms.html",
+                          context={"rooms": rooms},)
+
+
 
 
 def delete_room(request, id):
