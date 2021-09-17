@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete room!</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <p>Do you want to delete room: {{ room.name }}?</p>
+        <input type="hidden" name="id" value="{{ i.id }}">
+        <input type="submit" value="Delete Room">
+    </form>
+
+</body>
+</html>

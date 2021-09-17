@@ -6,12 +6,14 @@
 </head>
 <body>
 <table>
-    <th1><td> Name</td><td> Sets</td><td> Projector</td></th1>
+    <th1><td> Name</td><td> Sets</td><td> Projector</td><td>Enable</td></th1>
 <tbody>
     {% if rooms %}
     {% for i in rooms %}
       <tr>
           <td> <a href="{{i.id}}">{{i.name }}</a></td><td>{{i.sets}}</td><td>{{i.projector}}</td>
+          <td>True</td><td><a href="/room/modify/{{ i.id }}/">edit </a></td>
+          <td><a href="/room/delete/{{ i.id }}">delete </a></td><td><a href="/room/reserve/id">reservation </a></td>
       </tr>
     {% endfor %}
         {% elif not rooms %}

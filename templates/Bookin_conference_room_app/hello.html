@@ -9,7 +9,8 @@
     <title>Bookin</title>
 </head>
 <body>
-    <form>
+    <form action="" method="POST">
+    {% csrf_token %}
         <p>Room name:</p>
         <input type="text" name="name" placeholder="Room name">
         <p>Numer of sets:</p>
