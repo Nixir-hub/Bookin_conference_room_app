@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Rooms</title>
+</head>
+<body>
+<table>
+    <th1><td> Name</td><td> Sets</td><td> Projector</td></th1>
+<tbody>
+    {% if rooms %}
+    {% for i in rooms %}
+      <tr>
+          <td> <a href="{{i.id}}">{{i.name }}</a></td><td>{{i.sets}}</td><td>{{i.projector}}</td>
+      </tr>
+    {% endfor %}
+        {% elif not rooms %}
+        <td>There no rooms</td>
+    {% endif %}
+</body>
+</html>

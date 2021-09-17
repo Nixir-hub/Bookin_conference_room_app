@@ -20,5 +20,6 @@ from Bookin_conference_room_app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", hello),
-    path("room/new/", add_room)
+    path("room/new/", add_room),
+    path("rooms", show_room_list),
 ]
