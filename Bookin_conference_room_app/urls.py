@@ -22,5 +22,7 @@ urlpatterns = [
     path("", hello),
     path("room/new/", add_room),
     path("rooms", show_room_list),
-    path("room/delete/<id>" , delete_room)
+    path("room/delete/<id>", delete_room),
+    path("room/modify/<int:id>/", edit_room),
+
 ]

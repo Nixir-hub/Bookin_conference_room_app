@@ -12,10 +12,10 @@
     <form action="" method="POST">
     {% csrf_token %}
         <p>Room name:</p>
-        <input type="text" name="name" placeholder="Room name">
+        <input type="text" name="name" value="{{ room.name }}" placeholder="Room name">
         <p>Numer of sets:</p>
-        <input type="number" name="sets" placeholder="Number of sets">
-        <p>Projector in room:<input type="checkbox" name="projector"></p>
+        <input type="number" name="sets" value="{{ room.sets }}" placeholder="Number of sets">
+        <p>Projector in room:<input type="checkbox"  checked="{{ room.projector}}" name="projector"></p>
         <input type="submit" value="Add room">
     </form>
 
