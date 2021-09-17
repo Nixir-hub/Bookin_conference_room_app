@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Bookin_conference_room_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", hello),
+    path("room/new/", add_room)
 ]
