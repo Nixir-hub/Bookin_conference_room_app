@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Details</title>
+</head>
+<body>
+<table>
+    <th1>Room name: {{ room.name }}</th1>
+    <th2><td></td></td><td> Sets</td><td> Projector</td><td>Enable</td></th2>
+        <tr>
+          <td></td><td>{{room.sets}}</td><td>{{room.projector}}</td>
+          <td>True</td><td><a href="/room/modify/{{ room.id }}">edit </a></td>
+          <td><a href="/room/delete/{{ room.id }}">delete </a></td><td><a href="/room/reserve/{{ room.id }}">reservation </a></td>
+            <td><a href="/room_details/{{ room.id }}">Details </a></td>
+        </tr>
+</table>
+<table>
+<p></p>
+<p></p>
+    <th1><td>Reservations:</td></th1>
+    <th2><td>Date</td><td>Comment</td></th2>
+    {% for i in res %}<tr><td></td><td>{{ i.date }}</td><td>{{ i.comment }}</td></tr>{% endfor %}
+</table>
+</body>
+</html>

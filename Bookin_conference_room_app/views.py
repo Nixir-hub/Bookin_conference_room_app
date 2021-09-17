@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from time import *
+import datetime
 from Bookin_conference_room_app.models import *
 # Create your views here.
 from django.http import HttpResponse
@@ -94,3 +94,34 @@ def edit_room(request, id):
         room.projector = projector
         room.save()
         return redirect("/rooms")
+
+def reservation(request, id):
+    if request.method == "GET":
+        rooms = Room.objects.all()
+        return render(request, "Bookin_conference_room_app/make_reservation.html",
+                      {
+                          "rooms": rooms
+                      })
+
+    elif request.method == "POST":
+        comment = request.POST["comment"]
+        date = request.POST["date"]
+        room = Room.objects.get(id=int(id))
+        if Reservation.objects.filter(room_id=room, date=date):
+            return redirect("/rooms")
+        if date < str(datetime.date.today()):
+            return redirect("/rooms")
+        Reservation.objects.create(date=date, room_id=room, comment=comment)
+        return redirect("/rooms")
+
+
+def room_detail(request, id):
+    if request.method == "GET":
+        room = Room.objects.get(id=int(id))
+
+        rese = Reservation.objects.get_queryset().order_by("date")
+        return render(request, "Bookin_conference_room_app/room_details.html",
+                      {
+                          "room": room,
+                          "res": rese
+                      })
