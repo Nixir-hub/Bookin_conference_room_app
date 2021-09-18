@@ -2,24 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>List of Rooms</title>
-    <th><a href="/">Home</a></th>
+    <title>Search</title>
+       <th><a href="/">Home</a></th>
     <th><a href="/make_reservation">Make reservation</a> </th>
     <th><a href="/room/new">Add room</a> </th>
     <th><a href="/search">Search</a> </th>
 </head>
     <table>
     <th1><td> Name</td><td> Sets</td><td>Enable</td><td> Projector</td></th1>
+    <h3>Search</h3>
+    <form action="/search" method="GET">
+      {% csrf_token %}
+            <label for="name">Room name: </label>
+            <input type="text" id="name"  placeholder="room name" name="name">
+            <label for="sets">Min number of sets </label>
+            <input type="number" step="1"  id="sets" placeholder="number of sets" name="sets">
+            <input type="checkbox" name="projector" id="projector">
+            <label for="projector">Projector</label>
+      <button type="submit" formaction="/search" >Szukaj</button>
+    </form>
 
+<tbody>
     {% if rooms %}
     {% for i in rooms %}
-
-        <tr>
+      <tr>
           <td>{{i.name }}</td><td>{{i.sets}}</td>
-      {% if room.reserved %}
-        <td style="color:red;">Busy</td>
+          {% if room.reserved %}
+        <td  style="color:red;">Busy</td>
       {% else %}
-        <td style="color:green;">Free</td>
+        <td  style="color:green;">Free</td>
       {% endif %}
           <td>{{i.projector}}</td>
           <td><a href="/room/modify/{{ i.id }}">edit </a></td>
@@ -30,19 +41,9 @@
         {% elif not rooms %}
         <td>There no rooms</td>
     {% endif %}
-
-<body>
-    <h3>Search</h3>
-    <form action="/search" method="GET">
-      {% csrf_token %}
-            <label>Room name: </label>
-            <input type="text" id="name"  placeholder="room name" name="name">
-            <label for="sets">Min number of sets </label>
-            <input type="number" step="1"  id="sets" placeholder="number of sets" name="sets">
-            <input type="checkbox" name="projector" id="projector">
-            <label for="projector">Projector</label>
-      <button type="submit" formaction="/search" >Szukaj</button>
-    </form>
 </tbody>
+</head>
+<body>
+
 </body>
 </html>

@@ -28,7 +28,7 @@ def add_room(request):
         if sets <= 0:
             return HttpResponse("Sets must be > 0!")
         if Room.objects.filter(name=name).first():
-            return HttpResponse("That room exist! Choose difftrent name! ")
+            return HttpResponse("That room exist! Choose different name! ")
         Room.objects.create(name=name, sets=sets, projector=projector)
         return redirect("/rooms")
 
@@ -42,12 +42,10 @@ def show_room_list(request):
     if request.method == "GET":
         rooms = Room.objects.all()
         for room in rooms:
-            rese_dates = [rese.date for rese in room.reservation_set.all()]
-            room.reserved = datetime.date.today() in rese_dates
-            return render(request, "Bookin_conference_room_app/list_of_rooms.html",
-                          context={"rooms": rooms},)
-
-
+            reservation_dates = [reservation.date for reservation in room.reservation_set.all()]
+            room.reserved = datetime.date.today() in reservation_dates
+        return render(request, "Bookin_conference_room_app/list_of_rooms.html",
+                          {"rooms": rooms},)
 
 
 def delete_room(request, id):
@@ -69,6 +67,7 @@ def delete_room(request, id):
         room.delete()
         HttpResponse("Room deleted")
         return redirect("/rooms")
+
 
 def edit_room(request, id):
     """
@@ -101,7 +100,8 @@ def edit_room(request, id):
         room.save()
         return redirect("/rooms")
 
-def reservation(request, id):
+
+def take_reservation(request, id):
     if request.method == "GET":
         rooms = Room.objects.all()
         room = Room.objects.get(id=int(id))
@@ -161,3 +161,18 @@ def make_reservation(request):
             return HttpResponse("Data from past!")
         Reservation.objects.create(room_id=room, date=date, comment=comment)
         return redirect("/rooms")
+
+
+def search_room(request):
+    name = request.GET.get("name")
+    set = request.GET.get("sets")
+    set = int(set) if set else 0
+    projector = request.GET.get("projector")
+    rooms = Room.objects.all()
+    if projector:
+        rooms = rooms.filter(projector=bool(projector))
+    if set:
+        rooms = rooms.filter(sets__contains=set)
+    if name:
+        rooms = rooms.filter(name__contains=name)
+    return render(request, "Bookin_conference_room_app/list_of_search.html", context={"rooms": rooms, "date": datetime.date.today()})

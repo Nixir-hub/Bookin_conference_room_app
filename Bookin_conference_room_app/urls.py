@@ -25,8 +25,9 @@ urlpatterns = [
     path("rooms", show_room_list),
     path("room/delete/<id>", delete_room),
     path("room/modify/<int:id>/", edit_room),
-    path("room/reserve/<id>", reservation),
+    path("room/reserve/<id>", take_reservation),
     path("room_details/<id>", room_detail),
-    path("make_reservation", make_reservation)
+    path("make_reservation", make_reservation),
+    path("search", search_room)
 
 ]
