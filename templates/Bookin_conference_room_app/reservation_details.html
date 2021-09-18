@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Details</title>
+</head>
+<body>
+<th>Room: </th>
+<p>{{ room.name }}</p>
+<form method="post">
+        {% csrf_token %}
+        <p>Date of reservation</p>
+        <input type="date" name="reservation_date">
+        <p>Comment</p>
+        <textarea name="comment" ></textarea>
+         <p></p>
+        <input type="submit" value="Make reservation">
+    </form>
+    <table>
+<p></p>
+<p></p>
+
+    <th1><td>Reservations:</td></th1>
+    <th2><td>Date</td><td>Comment</td></th2>
+    {% for i in reserv %}<tr><td></td><td>{{ i.date }}</td><td>{{ i.comment }}</td></tr>{% endfor %}
+</table>
+</body>
+</html>

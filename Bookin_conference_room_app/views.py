@@ -100,30 +100,34 @@ def edit_room(request, id):
 def reservation(request, id):
     if request.method == "GET":
         rooms = Room.objects.all()
+        room = Room.objects.get(id=int(id))
+        reserv = room.reservation_set.get_queryset()
         return render(request, "Bookin_conference_room_app/make_reservation.html",
                       {
-                          "rooms": rooms
+                          "rooms": rooms,
+                          "reserv": reserv,
                       })
 
     elif request.method == "POST":
         comment = request.POST["comment"]
-        date = request.POST["date"]
+        date = request.POST.get("date")
         room = Room.objects.get(id=int(id))
+        reserv = room.reservation_set.filter(date__gte=str(datetime.date.today())).order_by('date')
         if Reservation.objects.filter(room_id=room, date=date):
-            return redirect("/rooms")
+            return HttpResponse("Room is busy in that day choose other day!")
         if date < str(datetime.date.today()):
-            return redirect("/rooms")
-        Reservation.objects.create(date=date, room_id=room, comment=comment)
+            return HttpResponse("Data from past!")
+        Reservation.objects.create(room_id=room, date=date, comment=comment)
         return redirect("/rooms")
 
 
 def room_detail(request, id):
     if request.method == "GET":
         room = Room.objects.get(id=int(id))
-
-        rese = Reservation.objects.get_queryset().order_by("date")
+        rese = room.reservation_set.get_queryset().order_by("date")
         return render(request, "Bookin_conference_room_app/room_details.html",
                       {
                           "room": room,
                           "res": rese
                       })
+

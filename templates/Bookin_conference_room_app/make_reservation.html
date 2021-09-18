@@ -14,5 +14,10 @@
          <p></p>
         <input type="submit" value="Make reservation">
     </form>
+    <table>
+        <th1><td>Reservations:</td></th1><br>
+            <th2><tr><td>Date</td><td> Comment</td></tr></th2><br>
+        {% for i in reserv %}<tr><td>{{ i.date }} </td><td>{{ i.comment }}</td></tr><br>{% endfor %}
+    </table>
 </body>
 </html>
