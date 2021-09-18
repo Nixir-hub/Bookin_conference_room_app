@@ -5,8 +5,11 @@ from Bookin_conference_room_app.models import *
 from django.http import HttpResponse
 from django.views import View
 
+def main_menu_bookin(request):
+    return render(request, "Bookin_conference_room_app/main_menu_bookin.html")
+
 def hello(request):
-    return HttpResponse("Hello")
+    return HttpResponse("Hello, Welcome to Bookin Room")
 
 def add_room(request):
     """
@@ -92,6 +95,7 @@ def edit_room(request, id):
         if Room.objects.filter(name=name).first():
             return HttpResponse("That room exist! Choose difftrent name! ")
         room.name = name
+        room.save()
         room.sets = sets
         room.projector = projector
         room.save()
@@ -122,6 +126,12 @@ def reservation(request, id):
 
 
 def room_detail(request, id):
+    """
+    Show room details to user all reservations
+    :param request:
+    :param id:
+    :return: view of site
+    """
     if request.method == "GET":
         room = Room.objects.get(id=int(id))
         rese = room.reservation_set.get_queryset().order_by("date")
@@ -131,3 +141,23 @@ def room_detail(request, id):
                           "res": rese
                       })
 
+
+def make_reservation(request):
+    if request.method == "GET":
+        rooms = Room.objects.all()
+        return render(request, "Bookin_conference_room_app/shortcut_make_reservations.html",
+                      {
+                          "rooms": rooms,
+
+                      })
+    elif request.method == "POST":
+        comment = request.POST["comment"]
+        date = request.POST.get("date")
+        room = Room.objects.get(id=request.POST["room"])
+        reserv = room.reservation_set.filter(date__gte=str(datetime.date.today())).order_by('date')
+        if Reservation.objects.filter(room_id=room, date=date):
+            return HttpResponse("Room is busy in that day choose other day!")
+        if date < str(datetime.date.today()):
+            return HttpResponse("Data from past!")
+        Reservation.objects.create(room_id=room, date=date, comment=comment)
+        return redirect("/rooms")

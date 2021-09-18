@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>Reservation</title>
+</head>
     <th><a href="/">Home</a></th>
     <th><a href="/make_reservation">Make reservation</a> </th>
-</head>
 <body>
     <form method="post">
         {% csrf_token %}
@@ -14,12 +15,14 @@
         <p>Comment</p>
         <textarea name="comment" ></textarea>
          <p></p>
+        {% if rooms %}<select name="room">
+        {% for i in rooms %}
+
+                <option value="{{ i.id }}">{{ i.name }}</option>
+
+        {% endfor %}</select>
+    {% endif %}
         <input type="submit" value="Make reservation">
     </form>
-    <table>
-        <th1><td>Reservations:</td></th1><br>
-            <th2><tr><td>Date</td><td> Comment</td></tr></th2><br>
-        {% for i in reserv %}<tr><td>{{ i.date }} </td><td>{{ i.comment }}</td></tr><br>{% endfor %}
-    </table>
 </body>
 </html>

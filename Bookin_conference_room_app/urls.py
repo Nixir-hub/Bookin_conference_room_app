@@ -19,12 +19,14 @@ from Bookin_conference_room_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", hello),
+    path("", main_menu_bookin),
+    path("hello", hello),
     path("room/new/", add_room),
     path("rooms", show_room_list),
     path("room/delete/<id>", delete_room),
     path("room/modify/<int:id>/", edit_room),
     path("room/reserve/<id>", reservation),
     path("room_details/<id>", room_detail),
+    path("make_reservation", make_reservation)
 
 ]

@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <title>List of Rooms</title>
 </head>
+    <th><a href="/">Home</a></th>
+    <th><a href="/make_reservation">Make reservation</a> </th>
+    <th><a href="/room/new">Add room</a> </th>
 <body>
 <table>
-    <th1><td> Name</td><td> Sets</td><td>Enable</td><td></td><td> Projector</td></th1>
+    <th1><td> Name</td><td> Sets</td><td>Enable</td><td> Projector</td></th1>
 <tbody>
     {% if rooms %}
     {% for i in rooms %}
       <tr>
-          <td> <a href="{{i.id}}">{{i.name }}</a></td><td>{{i.sets}}</td>
+          <td>{{i.name }}</td><td>{{i.sets}}</td>
           {% if room.reserved %}
         <td class="col-2" style="color:red;">Busy</td>
       {% else %}
         <td class="col-2" style="color:green;">Free</td>
       {% endif %}
-      {% if room.projector_availability %}
-        <td class="col-2" style="color:green;">&#9745;</td>
-      {% else %}
-        <td class="col-2" style="color:red;">&#9746;</td>
-      {% endif %}
-
           <td>{{i.projector}}</td>
           <td><a href="/room/modify/{{ i.id }}">edit </a></td>
           <td><a href="/room/delete/{{ i.id }}">delete </a></td><td><a href="/room/reserve/{{ i.id }}">reservation </a></td>

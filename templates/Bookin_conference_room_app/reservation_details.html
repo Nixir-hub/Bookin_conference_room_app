@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>Reservation Details</title>
+    <th><a href="/">Home</a></th>
+    <th><a href="/make_reservation">Make reservation</a> </th>
 </head>
 <body>
-<th>Room: </th>
+<p>Room: </p>
 <p>{{ room.name }}</p>
 <form method="post">
         {% csrf_token %}
