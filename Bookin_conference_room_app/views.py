@@ -143,6 +143,11 @@ def room_detail(request, id):
 
 
 def make_reservation(request):
+    """
+    Make a reservation
+    :param request:
+    :return: Add reservationm to db
+    """
     if request.method == "GET":
         rooms = Room.objects.all()
         return render(request, "Bookin_conference_room_app/shortcut_make_reservations.html",
@@ -164,6 +169,11 @@ def make_reservation(request):
 
 
 def search_room(request):
+    """
+    Simple search
+    :param request:
+    :return: list of rooms with choosen parm
+    """
     name = request.GET.get("name")
     set = request.GET.get("sets")
     set = int(set) if set else 0
