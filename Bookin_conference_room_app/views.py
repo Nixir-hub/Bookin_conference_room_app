@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 import datetime
 from Bookin_conference_room_app.models import *
-# Create your views here.
 from django.http import HttpResponse
 from django.views import View
+
 
 def main_menu_bookin(request):
     return render(request, "Bookin_conference_room_app/main_menu_bookin.html")
 
+
 def hello(request):
     return HttpResponse("Hello, Welcome to Bookin Room")
+
 
 def add_room(request):
     """
