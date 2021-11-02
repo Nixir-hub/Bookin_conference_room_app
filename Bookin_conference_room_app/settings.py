@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'Bookin_conference_room_app.wsgi.application'
 
 DATABASES = {
     'default': {
-
+        'HOST': '127.0.0.1',
+        'NAME': 'workshop2_db',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'USER': 'postgres',
+        'PASSWORD': 'coderslab',
     }
 }
 
