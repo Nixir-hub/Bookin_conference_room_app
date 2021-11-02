@@ -1,7 +1,7 @@
 <!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#djangoeshop)
 
-# ➤ djangoeshop
+# ➤ Booking conference room app 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#djangoeshop)
 
@@ -9,4 +9,4 @@
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#djangoeshop)
 
-# ➤ Booking conference room app 
+# ➤ Run Booking conference room app 
