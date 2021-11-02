@@ -1,4 +1,12 @@
 <!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#bookin_conference_room_app)
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#djangoeshop)
 
-# ➤ Bookin_conference_room_app
+# ➤ djangoeshop
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#djangoeshop)
+
+# ➤ Requirements
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#djangoeshop)
+
+# ➤ Booking conference room app 
